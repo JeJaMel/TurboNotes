@@ -1,4 +1,4 @@
-import Logout from "../components/Auth/Logout";
+import Logout from "../components/Home/Logout";
 
 const Home = () => {
   return (
