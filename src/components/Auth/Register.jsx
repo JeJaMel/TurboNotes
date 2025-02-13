@@ -28,7 +28,7 @@ const Register = () => {
         placeholder="Password"
         onChange={(e) => setPassword(e.target.value)}
       />
-      <button onClick={handleRegister}>Sign Up</button>
+      <button onClick={handleRegister}>Register</button>
     </div>
   );
 };
