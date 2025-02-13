@@ -10,14 +10,27 @@ const Register = () => {
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError(""); 
+    setError("");
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("User registered successfully!");
     } catch (error) {
-      setError(error.message);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          setError("This email is already registered.");
+          break;
+        case "auth/weak-password":
+          setError("Password should be at least 6 characters long.");
+          break;
+        case "auth/invalid-email":
+          setError("Invalid email format.");
+          break;
+        default:
+          setError("Registration failed. Please try again.");
+      }
     }
   };
+
 
   return (
     <div className={styles.registerContainer}>

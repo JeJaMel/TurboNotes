@@ -15,11 +15,24 @@ const Login = () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       alert("Logged in successfully!");
-      navigate("/home"); // Navigate to the home page upon successful login
+      navigate("/home");
     } catch (error) {
-      setError(error.message);
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("Invalid email format.");
+          break;
+        case "auth/user-not-found":
+          setError("No account found with this email.");
+          break;
+        case "auth/wrong-password":
+          setError("Incorrect!. Please try again.");
+          break;
+        default:
+          setError("Login failed. Please check your credentials.");
+      }
     }
   };
+
 
   return (
     <div className={styles.loginContainer}>

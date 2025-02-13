@@ -17,9 +17,19 @@ const ForgotPassword = () => {
       await sendPasswordResetEmail(auth, email);
       setMessage("Password reset email sent!");
     } catch (error) {
-      setError(error.message);
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("Invalid email format.");
+          break;
+        case "auth/user-not-found":
+          setError("No account found with this email.");
+          break;
+        default:
+          setError("Failed to send reset email. Please try again.");
+      }
     }
   };
+
 
   return (
     <div className={styles.forgotContainer}>
