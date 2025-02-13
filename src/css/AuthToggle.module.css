@@ -2,6 +2,7 @@
   margin-top: 10px;
   color: #007bff;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .authToggle:hover {

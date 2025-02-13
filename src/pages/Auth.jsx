@@ -18,7 +18,7 @@ const Auth = () => {
 
   const toggleForgotPassword = () => {
     setShowForgotPassword(!showForgotPassword);
-    setShowRegister(false); 
+    setShowRegister(false);
   };
 
   const goBack = () => {
@@ -32,7 +32,9 @@ const Auth = () => {
       <div className={styles.authForm}>
         {!showRegister && !showForgotPassword && <Login />}
         {!showRegister && !showForgotPassword && (
-          <GoogleLogin buttonText="Sign in with Google" />
+          <div className={styles.googleLoginButton}>
+            <GoogleLogin buttonText="Sign in with Google" />
+          </div>
         )}
         <AuthToggle
           showRegister={showRegister}
@@ -50,7 +52,9 @@ const Auth = () => {
       {showRegister && (
         <div className={styles.authForm}>
           <Register />
-          <GoogleLogin buttonText="Register with Google" />
+          <div className={styles.googleLoginButton}>
+            <GoogleLogin buttonText="Register with Google" />
+          </div>
         </div>
       )}
     </div>

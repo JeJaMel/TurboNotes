@@ -21,6 +21,13 @@
   width: 100%;
   max-width: 400px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+}
+
+.googleLoginButton {
+  margin-top: 20px; 
 }
 
 .hidden {
