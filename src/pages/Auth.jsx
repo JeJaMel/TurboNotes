@@ -29,36 +29,54 @@ const Auth = () => {
   return (
     <div className={styles.authContainer}>
       <img src={logo} alt="TurboNotes Logo" className={styles.authLogo} />
-      <div className={styles.authForm}>
-        {!showRegister && !showForgotPassword && <Login />}
-        {!showRegister && !showForgotPassword && (
+
+      {!showRegister && !showForgotPassword && (
+        <div className={styles.authForm}>
+          <Login />
           <div className={styles.googleLoginButton}>
             <GoogleLogin buttonText="Sign in with Google" />
           </div>
-        )}
-        <AuthToggle
-          showRegister={showRegister}
-          showForgotPassword={showForgotPassword}
-          toggleRegister={toggleRegister}
-          toggleForgotPassword={toggleForgotPassword}
-          goBack={goBack}
-        />
-      </div>
+          <AuthToggle
+            showRegister={showRegister}
+            showForgotPassword={showForgotPassword}
+            toggleRegister={toggleRegister}
+            toggleForgotPassword={toggleForgotPassword}
+            goBack={goBack}
+          />
+        </div>
+      )}
+
       {showForgotPassword && (
         <div className={styles.authForm}>
           <ForgotPassword />
+          <AuthToggle
+            showRegister={showRegister}
+            showForgotPassword={showForgotPassword}
+            toggleRegister={toggleRegister}
+            toggleForgotPassword={toggleForgotPassword}
+            goBack={goBack}
+          />
         </div>
       )}
+
       {showRegister && (
         <div className={styles.authForm}>
           <Register />
           <div className={styles.googleLoginButton}>
             <GoogleLogin buttonText="Register with Google" />
           </div>
+          <AuthToggle
+            showRegister={showRegister}
+            showForgotPassword={showForgotPassword}
+            toggleRegister={toggleRegister}
+            toggleForgotPassword={toggleForgotPassword}
+            goBack={goBack}
+          />
         </div>
       )}
     </div>
   );
 };
+
 
 export default Auth;

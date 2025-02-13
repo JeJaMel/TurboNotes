@@ -8,25 +8,26 @@ const AuthToggle = ({
   toggleForgotPassword,
   goBack,
 }) => {
-  return (
-    <div>
-      {!showRegister && !showForgotPassword && (
-        <div className={styles.authToggle} onClick={toggleForgotPassword}>
-          Forgot your password?
-        </div>
-      )}
-      {!showRegister && !showForgotPassword && (
-        <div className={styles.authToggle} onClick={toggleRegister}>
-          {showRegister
-            ? "Already have an account?"
-            : "You don't have an account?"}
-        </div>
-      )}
-      {(showRegister || showForgotPassword) && (
+  if (showRegister || showForgotPassword) {
+    return (
+      <div className={styles.authToggleContainer}>
         <div className={styles.authToggle} onClick={goBack}>
           Go back
         </div>
-      )}
+      </div>
+    );
+  }
+
+  return (
+    <div className={styles.authToggleContainer}>
+      <div className={styles.authToggle} onClick={toggleForgotPassword}>
+        Forgot your password?
+      </div>
+      <div className={styles.authToggle} onClick={toggleRegister}>
+        {showRegister
+          ? "Already have an account?"
+          : "You don't have an account?"}
+      </div>
     </div>
   );
 };
