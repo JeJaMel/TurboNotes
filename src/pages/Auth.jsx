@@ -3,6 +3,7 @@ import Login from "../components/Auth/Login";
 import Register from "../components/Auth/Register";
 import ForgotPassword from "../components/Auth/ForgotPassword";
 import GoogleLogin from "../components/Auth/GoogleLogin";
+import AuthToggle from "../components/Auth/AuthToggle";
 import styles from "../css/Auth.module.css";
 import logo from "../assets/Logo1.png"; // Import the logo image
 
@@ -33,23 +34,13 @@ const Auth = () => {
         {!showRegister && !showForgotPassword && (
           <GoogleLogin buttonText="Sign in with Google" />
         )}
-        {!showRegister && !showForgotPassword && (
-          <div className={styles.authToggle} onClick={toggleForgotPassword}>
-            Forgot your password?
-          </div>
-        )}
-        {!showRegister && !showForgotPassword && (
-          <div className={styles.authToggle} onClick={toggleRegister}>
-            {showRegister
-              ? "Already have an account?"
-              : "You don't have an account?"}
-          </div>
-        )}
-        {(showRegister || showForgotPassword) && (
-          <div className={styles.authToggle} onClick={goBack}>
-            Go back
-          </div>
-        )}
+        <AuthToggle
+          showRegister={showRegister}
+          showForgotPassword={showForgotPassword}
+          toggleRegister={toggleRegister}
+          toggleForgotPassword={toggleForgotPassword}
+          goBack={goBack}
+        />
       </div>
       {showForgotPassword && (
         <div className={styles.authForm}>
