@@ -5,7 +5,7 @@ import ForgotPassword from "../components/Auth/ForgotPassword";
 import GoogleLogin from "../components/Auth/GoogleLogin";
 import AuthToggle from "../components/Auth/AuthToggle";
 import styles from "../css/Auth.module.css";
-import logo from "../assets/Logo1.png"; // Import the logo image
+import logo from "../assets/Logo1.png";
 
 const Auth = () => {
   const [showRegister, setShowRegister] = useState(false);
@@ -13,12 +13,12 @@ const Auth = () => {
 
   const toggleRegister = () => {
     setShowRegister(!showRegister);
-    setShowForgotPassword(false); // Ensure Forgot Password is hidden
+    setShowForgotPassword(false);
   };
 
   const toggleForgotPassword = () => {
     setShowForgotPassword(!showForgotPassword);
-    setShowRegister(false); // Ensure Register is hidden
+    setShowRegister(false); 
   };
 
   const goBack = () => {
