@@ -23,12 +23,6 @@
   text-align: center;
 }
 
-.authToggle {
-  margin-top: 10px;
-  color: #007bff;
-  cursor: pointer;
-}
-
 .hidden {
   display: none;
 }
