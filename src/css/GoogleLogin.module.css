@@ -1,0 +1,95 @@
+.gsiMaterialButton {
+  user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  appearance: none;
+  background-color: white;
+  background-image: none;
+  border: 1px solid #747775;
+  border-radius: 50%; /* Make the button circular */
+  box-sizing: border-box;
+  color: #1f1f1f;
+  cursor: pointer;
+  font-family: 'Roboto', arial, sans-serif;
+  font-size: 14px;
+  height: 40px; /* Ensure height and width are equal */
+  width: 40px; /* Ensure height and width are equal */
+  letter-spacing: 0.25px;
+  outline: none;
+  overflow: hidden;
+  padding: 0;
+  position: relative;
+  text-align: center;
+  transition: background-color .218s, border-color .218s, box-shadow .218s, width .218s;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the content */
+}
+
+.gsiMaterialButton.withText {
+  border-radius: 20px; /* Change to rounded rectangle when text is present */
+  width: auto; /* Allow width to adjust based on content */
+  padding: 0 12px; /* Add padding for text */
+}
+
+.gsiMaterialButtonIcon {
+  height: 20px;
+  width: 20px;
+  margin-right: 0; /* Remove margin when circular */
+}
+
+.gsiMaterialButton.withText .gsiMaterialButtonIcon {
+  margin-right: 12px; /* Add margin when text is present */
+}
+
+.gsiMaterialButtonContentWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.gsiMaterialButtonContents {
+  display: none; /* Hide the text content by default */
+}
+
+.gsiMaterialButton.withText .gsiMaterialButtonContents {
+  display: inline; /* Show the text content when text is present */
+}
+
+.gsiMaterialButtonState {
+  transition: opacity .218s;
+  bottom: 0;
+  left: 0;
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.gsiMaterialButton:disabled {
+  cursor: default;
+  background-color: #ffffff61;
+  border-color: #1f1f1f1f;
+}
+
+.gsiMaterialButton:disabled .gsiMaterialButtonIcon {
+  opacity: 38%;
+}
+
+.gsiMaterialButton:not(:disabled):active .gsiMaterialButtonState, 
+.gsiMaterialButton:not(:disabled):focus .gsiMaterialButtonState {
+  background-color: #303030;
+  opacity: 12%;
+}
+
+.gsiMaterialButton:not(:disabled):hover {
+  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .30), 0 1px 3px 1px rgba(60, 64, 67, .15);
+}
+
+.gsiMaterialButton:not(:disabled):hover .gsiMaterialButtonState {
+  background-color: #303030;
+  opacity: 8%;
+}
