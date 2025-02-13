@@ -1,41 +1,46 @@
 import { useState } from "react";
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../../firebase/firebase";
+import styles from "../../css/Login.module.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const auth = getAuth();
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      console.log("User logged in!");
-      navigate("/home");
-    } catch (err) {
-      setError(err.message);
+      alert("Logged in successfully!");
+      navigate("/home"); // Navigate to the home page upon successful login
+    } catch (error) {
+      setError(error.message);
     }
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      {error && <p>{error}</p>}
-      <form onSubmit={handleLogin}>
+    <div className={styles.loginContainer}>
+      <h2 className={styles.loginTitle}>Login</h2>
+      {error && <p className={styles.errorMessage}>{error}</p>}
+      <form className={styles.loginForm} onSubmit={handleLogin}>
         <input
           type="email"
+          className={styles.inputField}
           placeholder="Email"
           onChange={(e) => setEmail(e.target.value)}
         />
         <input
           type="password"
+          className={styles.inputField}
           placeholder="Password"
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit">Login</button>
+        <button type="submit" className={styles.loginButton}>
+          Login
+        </button>
       </form>
     </div>
   );
