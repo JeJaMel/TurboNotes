@@ -1,12 +1,15 @@
 import { useState } from "react";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import styles from "../../css/Register.module.css"; 
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const auth = getAuth();
+  const navigate = useNavigate();
+
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -14,6 +17,8 @@ const Register = () => {
     try {
       await createUserWithEmailAndPassword(auth, email, password);
       alert("User registered successfully!");
+      navigate("/home");
+
     } catch (error) {
       switch (error.code) {
         case "auth/email-already-in-use":
