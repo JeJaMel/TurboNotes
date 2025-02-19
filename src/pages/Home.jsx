@@ -1,10 +1,10 @@
-import Logout from "../components/Home/Logout";
+import TopBar from "../components/Home/TopBar";
 
 const Home = () => {
   return (
     <div>
       <h1>Welcome to Home!</h1>
-      <Logout />
+      <TopBar />
     </div>
   );
 };
