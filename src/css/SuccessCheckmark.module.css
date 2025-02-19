@@ -14,7 +14,7 @@
     position: relative;
     border-radius: 50%;
     box-sizing: content-box;
-    border: 4px solid #4CAF50;
+    border: 4px solid #2E7D32; /* Darker green */
 }
 
 .checkIcon::before {
@@ -44,7 +44,7 @@
 
 .iconLine {
     height: 5px;
-    background-color: #4CAF50;
+    background-color: #2E7D32; /* Darker green */
     display: block;
     border-radius: 2px;
     position: absolute;
@@ -76,7 +76,7 @@
     border-radius: 50%;
     position: absolute;
     box-sizing: content-box;
-    border: 4px solid rgba(76, 175, 80, .5);
+    border: 4px solid rgba(46, 125, 50, .5); /* Darker green */
 }
 
 .iconFix {
