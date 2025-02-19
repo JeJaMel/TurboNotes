@@ -4,7 +4,7 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  background-color: #f0f8ff;
+  background-color: #f0f8ff; /*backgroung white*/
   padding: 20px;
 }
 
@@ -14,20 +14,26 @@
 }
 
 .authForm {
-  background: #0a2020;
+  background: #ffffff;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e0e0e0; 
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); 
   width: 100%;
   max-width: 400px;
   text-align: center;
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
+  transition: box-shadow 0.3s ease; 
+}
+
+.authForm:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4); 
 }
 
 .googleLoginButton {
-  margin-top: 20px; 
+  margin-top: 20px;
 }
 
 .hidden {

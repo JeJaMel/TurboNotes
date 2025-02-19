@@ -7,12 +7,12 @@
 
 .authToggle {
   margin-top: 10px;
-  color: #007bff;
+  color: #0a2020;
   cursor: pointer;
   font-weight: bold;
 }
 
 .authToggle:hover {
   text-decoration: underline;
-  color: #0056b3;
+  color: #0d3d3d;
 }
