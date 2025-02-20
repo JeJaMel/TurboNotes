@@ -5,6 +5,7 @@ import NoteList from "../components/Home/NoteList";
 import Header from "../components/Home/UserButton";
 import { getAuth } from "firebase/auth";
 import { db, collection, onSnapshot } from "../firebase/firebase";
+import { NotesProvider } from "../context/NotesContext";
 
 const Home = () => {
   const [refresh, setRefresh] = useState(false);
@@ -30,10 +31,12 @@ const Home = () => {
   return (
     <div>
       <h1>Welcome to Home!</h1>
-      <TopBar />
-      <NoteList refresh={refresh} />
-      <AddNote onNoteAdded={refreshNotes} />
-      <Header user={user} notesCount={notesCount} />
+      <NotesProvider>
+        <TopBar />
+        <NoteList refresh={refresh} />
+        <AddNote onNoteAdded={refreshNotes} />
+        <Header user={user} notesCount={notesCount} />
+      </NotesProvider>
     </div>
   );
 };

@@ -1,56 +1,17 @@
-import { useEffect, useState } from "react";
-import {
-  db,
-  collection,
-  onSnapshot,
-  auth,
-  onAuthStateChanged,
-} from "../../firebase/firebase";
-import SearchBar from "./SearchBar";
+import styles from "../../css/Home/NoteList.module.css";
 import Note from "./Note";
 import Wait from "../Home/Wait";
-import styles from "../../css/Home/NoteList.module.css";
+import { useNotes } from "../../context/useNotes"; 
 
 const NoteList = () => {
-  const [notes, setNotes] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [query, setQuery] = useState(""); // Search query state
+  const { notes, setNotes, loading, query } = useNotes();
 
-  useEffect(() => {
-    let unsubscribeSnapshot;
-
-    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        const notesRef = collection(db, "users", user.uid, "notes");
-        unsubscribeSnapshot = onSnapshot(notesRef, (snapshot) => {
-          const notesData = snapshot.docs.map((doc) => ({
-            id: doc.id,
-            ...doc.data(),
-          }));
-          setNotes(notesData);
-          setLoading(false);
-        });
-      } else {
-        setNotes([]);
-        setLoading(false);
-      }
-    });
-
-    return () => {
-      if (unsubscribeAuth) unsubscribeAuth();
-      if (unsubscribeSnapshot) unsubscribeSnapshot();
-    };
-  }, []);
-
-  // Filter notes based on title
   const filteredNotes = notes.filter((note) =>
     note.title.toLowerCase().includes(query.toLowerCase())
   );
 
   return (
     <div className={styles.noteListContainer}>
-      <SearchBar onSearch={setQuery} />
-
       {loading ? (
         <Wait />
       ) : filteredNotes.length > 0 ? (

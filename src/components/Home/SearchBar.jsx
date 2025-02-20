@@ -1,14 +1,11 @@
-import { useState } from "react";
 import styles from "../../css/Home/SearchBar.module.css";
-import propTypes from "prop-types";
+import { useNotes } from "../../context/useNotes"; 
 
-const SearchBar = ({ onSearch }) => {
-  const [query, setQuery] = useState("");
+const SearchBar = () => {
+  const { query, setQuery } = useNotes();
 
   const handleChange = (e) => {
-    const value = e.target.value;
-    setQuery(value);
-    onSearch(value); // Update parent component with search query
+    setQuery(e.target.value);
   };
 
   return (
@@ -22,10 +19,6 @@ const SearchBar = ({ onSearch }) => {
       />
     </div>
   );
-};
-
-SearchBar.propTypes = {
-  onSearch: propTypes.func.isRequired,
 };
 
 export default SearchBar;

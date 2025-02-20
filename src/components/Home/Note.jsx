@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { db } from "../../firebase/firebase";
+import { db, auth } from "../../firebase/firebase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import styles from "../../css/Home/Note.module.css";
 import propTypes from "prop-types";
@@ -10,23 +10,40 @@ const Note = ({ note, setNotes }) => {
   const [updatedTitle, setUpdatedTitle] = useState(note.title);
   const [updatedContent, setUpdatedContent] = useState(note.content);
 
-  const handleDelete = async () => {
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this note?"
-    );
-    if (!confirmDelete) return;
+ const handleDelete = async () => {
+   console.log("Deleting note with ID:", note.id);
 
-    try {
-      const noteRef = doc(db, "users", note.userId, "notes", note.id);
-      await deleteDoc(noteRef);
+   if (!note.id) {
+     console.error("Note ID is missing!");
+     return;
+   }
 
-      // Remove the note from the state dynamically
-      setNotes((prevNotes) => prevNotes.filter((n) => n.id !== note.id));
-      alert("Note deleted successfully!");
-    } catch (error) {
-      console.error("Error deleting note:", error);
-    }
-  };
+   const confirmDelete = window.confirm(
+     "Are you sure you want to delete this note?"
+   );
+   if (!confirmDelete) return;
+
+   try {
+     const userId = auth.currentUser?.uid;
+     if (!userId) {
+       console.error("User ID is missing!");
+       return;
+     }
+
+     const noteRef = doc(db, "users", userId, "notes", note.id);
+     console.log("Deleting from Firestore:", noteRef.path);
+
+     await deleteDoc(noteRef);
+
+     setNotes((prevNotes) => prevNotes.filter((n) => n.id !== note.id));
+
+     console.log("Note deleted successfully!");
+   } catch (error) {
+     console.error("Error deleting note:", error);
+   }
+ };
+
+
 
   const handleEdit = async () => {
     try {
