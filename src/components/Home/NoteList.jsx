@@ -8,6 +8,7 @@ import {
 } from "../../firebase/firebase";
 import SearchBar from "./SearchBar";
 import Note from "./Note";
+import Wait from "../Home/Wait";
 import styles from "../../css/Home/NoteList.module.css";
 
 const NoteList = () => {
@@ -51,7 +52,7 @@ const NoteList = () => {
       <SearchBar onSearch={setQuery} />
 
       {loading ? (
-        <p>Loading...</p>
+        <Wait />
       ) : filteredNotes.length > 0 ? (
         filteredNotes.map((note) => (
           <Note key={note.id} note={note} setNotes={setNotes} />
