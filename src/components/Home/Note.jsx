@@ -10,44 +10,48 @@ const Note = ({ note, setNotes }) => {
   const [updatedTitle, setUpdatedTitle] = useState(note.title);
   const [updatedContent, setUpdatedContent] = useState(note.content);
 
- const handleDelete = async () => {
-   console.log("Deleting note with ID:", note.id);
+  const handleDelete = async () => {
+    console.log("Deleting note with ID:", note.id);
 
-   if (!note.id) {
-     console.error("Note ID is missing!");
-     return;
-   }
+    if (!note.id) {
+      console.error("Note ID is missing!");
+      return;
+    }
 
-   const confirmDelete = window.confirm(
-     "Are you sure you want to delete this note?"
-   );
-   if (!confirmDelete) return;
+    const confirmDelete = window.confirm(
+      "Are you sure you want to delete this note?"
+    );
+    if (!confirmDelete) return;
 
-   try {
-     const userId = auth.currentUser?.uid;
-     if (!userId) {
-       console.error("User ID is missing!");
-       return;
-     }
+    try {
+      const userId = auth.currentUser?.uid;
+      if (!userId) {
+        console.error("User ID is missing!");
+        return;
+      }
 
-     const noteRef = doc(db, "users", userId, "notes", note.id);
-     console.log("Deleting from Firestore:", noteRef.path);
+      const noteRef = doc(db, "users", userId, "notes", note.id);
+      console.log("Deleting from Firestore:", noteRef.path);
 
-     await deleteDoc(noteRef);
+      await deleteDoc(noteRef);
 
-     setNotes((prevNotes) => prevNotes.filter((n) => n.id !== note.id));
+      setNotes((prevNotes) => prevNotes.filter((n) => n.id !== note.id));
 
-     console.log("Note deleted successfully!");
-   } catch (error) {
-     console.error("Error deleting note:", error);
-   }
- };
-
-
+      console.log("Note deleted successfully!");
+    } catch (error) {
+      console.error("Error deleting note:", error);
+    }
+  };
 
   const handleEdit = async () => {
     try {
-      const noteRef = doc(db, "users", note.userId, "notes", note.id);
+      const userId = auth.currentUser?.uid;
+      if (!userId) {
+        console.error("User ID is missing!");
+        return;
+      }
+
+      const noteRef = doc(db, "users", userId, "notes", note.id);
       await updateDoc(noteRef, {
         title: updatedTitle,
         content: updatedContent,
@@ -74,7 +78,9 @@ const Note = ({ note, setNotes }) => {
       <div className={styles.noteOptions}>
         <button
           className={styles.readButton}
-          onClick={() => setIsReadModalOpen(true)}
+          onClick={() => {
+            setIsReadModalOpen(true);
+          }}
         >
           Read
         </button>
