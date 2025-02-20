@@ -1,6 +1,6 @@
 import { useState } from "react";
 import UserInfo from "./UserInfo";
-import styles from "../../css/Home/Header.module.css";
+import styles from "../../css/Home/UserButton.module.css";
 import inputTypes from "prop-types";
 
 const Header = ({ user, notesCount }) => {

@@ -1,34 +1,29 @@
 import { useEffect, useState } from "react";
 import {
-  auth,
-  onAuthStateChanged,
   db,
   collection,
   onSnapshot,
+  auth,
+  onAuthStateChanged,
 } from "../../firebase/firebase";
+import SearchBar from "./SearchBar";
 import Note from "./Note";
 import styles from "../../css/Home/NoteList.module.css";
-import Header from "./Header"; // Import the Header component
 
 const NoteList = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState(null);
+  const [query, setQuery] = useState(""); // Search query state
 
   useEffect(() => {
-    let unsubscribeAuth;
     let unsubscribeSnapshot;
 
-    unsubscribeAuth = onAuthStateChanged(auth, (user) => {
+    const unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        setUser(user); // Save user info to state
-
         const notesRef = collection(db, "users", user.uid, "notes");
-        // Subscribe to real-time updates
         unsubscribeSnapshot = onSnapshot(notesRef, (snapshot) => {
           const notesData = snapshot.docs.map((doc) => ({
             id: doc.id,
-            userId: user.uid,
             ...doc.data(),
           }));
           setNotes(notesData);
@@ -37,7 +32,6 @@ const NoteList = () => {
       } else {
         setNotes([]);
         setLoading(false);
-        setUser(null);
       }
     });
 
@@ -47,20 +41,23 @@ const NoteList = () => {
     };
   }, []);
 
+  // Filter notes based on title
+  const filteredNotes = notes.filter((note) =>
+    note.title.toLowerCase().includes(query.toLowerCase())
+  );
+
   return (
     <div className={styles.noteListContainer}>
-      {/* Include the Header component with user and notes count */}
-      {user && <Header user={user} notesCount={notes.length} />}
+      <SearchBar onSearch={setQuery} />
 
-      {/* Show notes */}
       {loading ? (
         <p>Loading...</p>
-      ) : notes.length > 0 ? (
-        notes.map((note) => (
+      ) : filteredNotes.length > 0 ? (
+        filteredNotes.map((note) => (
           <Note key={note.id} note={note} setNotes={setNotes} />
         ))
       ) : (
-        <p>No notes found</p>
+        <p>No matching notes found</p>
       )}
     </div>
   );
