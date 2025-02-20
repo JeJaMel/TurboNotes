@@ -36,5 +36,76 @@ const Note = ({ note, setNotes }) => {
         content: updatedContent,
       });
 
-      // Update the note in the state
-      setNote
+      setNotes((prevNotes) =>
+        prevNotes.map((n) =>
+          n.id === note.id
+            ? { ...n, title: updatedTitle, content: updatedContent }
+            : n
+        )
+      );
+
+      setIsEditMode(false);
+      alert("Note updated successfully!");
+    } catch (error) {
+      console.error("Error updating note:", error);
+    }
+  };
+
+  return (
+    <div className={styles.noteContainer}>
+      <h3 className={styles.noteTitle}>{note.title}</h3>
+      <div className={styles.noteOptions}>
+        <button
+          className={styles.readButton}
+          onClick={() => setIsReadModalOpen(true)}
+        >
+          Read
+        </button>
+        <button
+          className={styles.editButton}
+          onClick={() => setIsEditMode(true)}
+        >
+          Edit
+        </button>
+        <button className={styles.deleteButton} onClick={handleDelete}>
+          Delete
+        </button>
+      </div>
+
+      {isReadModalOpen && (
+        <div className={styles.modal}>
+          <div className={styles.modalContent}>
+            <h3>{note.title}</h3>
+            <p>{note.content}</p>
+            <button onClick={() => setIsReadModalOpen(false)}>Close</button>
+          </div>
+        </div>
+      )}
+
+      {isEditMode && (
+        <div className={styles.editForm}>
+          <input
+            type="text"
+            value={updatedTitle}
+            onChange={(e) => setUpdatedTitle(e.target.value)}
+            placeholder="Edit title"
+          />
+          <textarea
+            value={updatedContent}
+            onChange={(e) => setUpdatedContent(e.target.value)}
+            placeholder="Edit content"
+          />
+          <button onClick={handleEdit}>Save</button>
+          <button onClick={() => setIsEditMode(false)}>Cancel</button>
+        </div>
+      )}
+    </div>
+  );
+};
+
+Note.propTypes = {
+  note: propTypes.object.isRequired,
+  setNotes: propTypes.func.isRequired,
+};
+
+export default Note;

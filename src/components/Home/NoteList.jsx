@@ -8,10 +8,12 @@ import {
 } from "../../firebase/firebase";
 import Note from "./Note";
 import styles from "../../css/Home/NoteList.module.css";
+import Header from "./Header"; // Import the Header component
 
 const NoteList = () => {
   const [notes, setNotes] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     let unsubscribeAuth;
@@ -19,13 +21,14 @@ const NoteList = () => {
 
     unsubscribeAuth = onAuthStateChanged(auth, (user) => {
       if (user) {
-        const notesRef = collection(db, "users", user.uid, "notes");
+        setUser(user); // Save user info to state
 
+        const notesRef = collection(db, "users", user.uid, "notes");
         // Subscribe to real-time updates
         unsubscribeSnapshot = onSnapshot(notesRef, (snapshot) => {
           const notesData = snapshot.docs.map((doc) => ({
             id: doc.id,
-            userId: user.uid, // Needed for deleting notes
+            userId: user.uid,
             ...doc.data(),
           }));
           setNotes(notesData);
@@ -34,10 +37,10 @@ const NoteList = () => {
       } else {
         setNotes([]);
         setLoading(false);
+        setUser(null);
       }
     });
 
-    // Cleanup subscriptions on unmount
     return () => {
       if (unsubscribeAuth) unsubscribeAuth();
       if (unsubscribeSnapshot) unsubscribeSnapshot();
@@ -46,6 +49,10 @@ const NoteList = () => {
 
   return (
     <div className={styles.noteListContainer}>
+      {/* Include the Header component with user and notes count */}
+      {user && <Header user={user} notesCount={notes.length} />}
+
+      {/* Show notes */}
       {loading ? (
         <p>Loading...</p>
       ) : notes.length > 0 ? (
