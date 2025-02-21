@@ -1,0 +1,35 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 20px;
+
+}
+
+.userInfoButton {
+  background-color: #007bff;
+  border: none;
+  border-radius: 15px; 
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  width: 75px;
+  transition: background-color 0.3s ease;
+}
+
+.userInfoButton:hover {
+  background-color: #0056b3;
+}
+
+.userInfoButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.userInfoButton svg {
+  height: 34px;
+  width: 34px;
+}

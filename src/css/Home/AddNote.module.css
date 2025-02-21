@@ -1,0 +1,122 @@
+.addNoteContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Align items to the right */
+  margin: 20px;
+}
+
+.addButton {
+  background-color: #007bff;
+  border: none;
+  border-radius: 15px;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 75px;
+  width: 75px;
+  transition: background-color 0.3s ease;
+}
+
+.addButton:hover {
+  background-color: #0056b3;
+}
+
+.addButton:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+}
+
+.addButton img {
+  height: 34px;
+  width: 34px;
+  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+}
+
+.addNoteFormContainer {
+  position: fixed; 
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5); 
+  padding: 20px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 500px;
+  z-index: 1000;
+  border-color: #ccc;
+  border-style: solid;
+  transition: background-color 0.3s ease;
+}
+
+.addNoteFormContainer:hover {
+  background-color: rgba(0, 0, 0, 0.6); /* Lighter on hover */
+}
+
+.titleContainer {
+  text-align: center;
+  margin-bottom: 10px; /* Reduce the space between the title and the h2 */
+}
+
+.titleContainer h2 {
+  font-size: 48px; 
+  color: white;
+  margin: 0; /* Remove default margin */
+}
+
+.addNoteForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center; 
+  width: 100%;
+}
+
+.addNoteForm input,
+.addNoteForm textarea {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 24px; 
+  transition: background-color 0.3s ease;
+}
+
+.addNoteForm input:hover,
+.addNoteForm textarea:hover {
+  background-color: rgba(44, 37, 37, 0.5); 
+}
+
+.addNoteForm input {
+  height: 40px; 
+}
+
+.addNoteForm textarea {
+  height: 240px; 
+}
+
+.addNoteForm button {
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  padding: 10px 20px;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+}
+
+.addNoteForm button:hover {
+  background-color: #218838;
+}
+
+.addNoteForm button:disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+.addNoteForm button svg {
+  height: 44px; 
+  width: 44px; 
+}

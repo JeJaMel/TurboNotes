@@ -2,6 +2,7 @@ import { useState } from "react";
 import UserInfo from "./UserInfo";
 import styles from "../../css/Home/UserButton.module.css";
 import inputTypes from "prop-types";
+import { FiUser } from "react-icons/fi";
 
 const Header = ({ user, notesCount }) => {
   const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
@@ -12,7 +13,7 @@ const Header = ({ user, notesCount }) => {
         className={styles.userInfoButton}
         onClick={() => setIsUserInfoModalOpen(true)}
       >
-        User Info
+        <FiUser />
       </button>
 
       {isUserInfoModalOpen && user && (

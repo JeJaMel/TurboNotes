@@ -2,6 +2,8 @@ import { useState } from "react";
 import { db, collection, addDoc } from "../../firebase/firebase";
 import { auth } from "../../firebase/firebase";
 import styles from "../../css/Home/AddNote.module.css";
+import pencilPlusIcon from "../../assets/pencil-plus.svg";
+import { FiSave } from "react-icons/fi";
 
 const AddNote = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -46,29 +48,34 @@ const AddNote = () => {
   return (
     <div className={styles.addNoteContainer}>
       <button onClick={() => setIsOpen(!isOpen)} className={styles.addButton}>
-        +
+        <img src={pencilPlusIcon} alt="Add Note" />
       </button>
 
       {isOpen && (
-        <div className={styles.addNoteForm}>
-          <input
-            type="text"
-            placeholder="Title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <textarea
-            placeholder="Content"
-            value={content}
-            onChange={(e) => setContent(e.target.value)}
-          />
-          <button
-            onClick={handleAddNote}
-            className={styles.saveButton}
-            disabled={loading}
-          >
-            {loading ? "Saving..." : "Save"}
-          </button>
+        <div className={styles.addNoteFormContainer}>
+          <div className={styles.titleContainer}>
+            <h2>Add a new note!</h2>
+            </div>
+          <div className={styles.addNoteForm}>
+            <input
+              type="text"
+              placeholder="Title"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+            />
+            <textarea
+              placeholder="Content"
+              value={content}
+              onChange={(e) => setContent(e.target.value)}
+            />
+            <button
+              onClick={handleAddNote}
+              className={styles.saveButton}
+              disabled={loading}
+            >
+              {loading ? "Saving..." : <FiSave />}
+            </button>
+          </div>
         </div>
       )}
     </div>
