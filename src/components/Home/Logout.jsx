@@ -1,6 +1,7 @@
 import { signOut } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../../firebase/firebase";
+import styles from "../../css/Home/Logout.module.css";
 
 const Logout = () => {
   const navigate = useNavigate();

@@ -1,0 +1,35 @@
+.noteListContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; 
+  gap: 20px;
+  width: 85vw; 
+  margin: left; 
+  padding: 30px;
+  border: 2px solid rgb(0, 128, 255, 0.5);
+  border-radius: 10px;
+}
+
+.noteContainer {
+  flex: 1 1 auto; /* Allow each note to take available space */
+  box-sizing: border-box;
+  margin: 10px; /* gap between notes */
+}
+
+@media (max-width: 1200px) {
+  .noteListContainer {
+    justify-content: center; 
+  }
+}
+
+@media (max-width: 900px) {
+  .noteListContainer {
+    justify-content: center; 
+  }
+}
+
+@media (max-width: 600px) {
+  .noteListContainer {
+    justify-content: center; 
+  }
+}

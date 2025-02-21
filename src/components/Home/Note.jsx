@@ -75,6 +75,13 @@ const Note = ({ note, setNotes }) => {
   return (
     <div className={styles.noteContainer}>
       <h3 className={styles.noteTitle}>{note.title}</h3>
+
+      <p className={styles.noteContent}>
+        {note.content.length > 150
+          ? `${note.content.slice(0, 150)}...`
+          : note.content}
+      </p>
+
       <div className={styles.noteOptions}>
         <button
           className={styles.readButton}
