@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { getAuth, signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
-import styles from "../../css/GoogleLogin.module.css";
+import styles from "../../css/Auth/GoogleLogin.module.css";
 import PropTypes from "prop-types";
 import SuccessCheckmark from "../Auth/SuccesCheckmark";
 

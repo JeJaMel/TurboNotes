@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import styles from "../../css/AuthToggle.module.css";
+import styles from "../../css/Auth/Auth.module.css";
 
 const AuthToggle = ({
   showRegister,

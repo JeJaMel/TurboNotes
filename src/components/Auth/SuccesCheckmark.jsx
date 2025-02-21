@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import styles from "../../css/SuccessCheckmark.module.css";
+import styles from "../../css/Auth/SuccessCheckmark.module.css";
 import PropTypes from "prop-types";
 
 const SuccessCheckmark = ({ onAnimationEnd }) => {

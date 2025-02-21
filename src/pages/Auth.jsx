@@ -4,7 +4,7 @@ import Register from "../components/Auth/Register";
 import ForgotPassword from "../components/Auth/ForgotPassword";
 import GoogleLogin from "../components/Auth/GoogleLogin";
 import AuthToggle from "../components/Auth/AuthToggle";
-import styles from "../css/Auth.module.css";
+import styles from "../css/Auth/Auth.module.css";
 import logo from "../assets/Logo1.png";
 
 const Auth = () => {
