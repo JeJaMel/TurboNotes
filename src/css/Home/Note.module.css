@@ -50,14 +50,28 @@
   background: #007BFF;
   color: white;
   border: 1px solid #007BFF;
-  padding: 10px 15px;
+  padding: 8px 12px; /* Reduce padding to prevent excessive growth */
   border-radius: 5px;
   cursor: pointer;
   text-transform: uppercase;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 40px; /* Fixed height to prevent button from growing */
+  width: auto; /* Auto width to accommodate content */
+}
+
+.readButton svg, .editButton svg, .deleteButton svg {
+  font-size: 1.8rem; /* Adjust size of the icon */
+  color: white;
 }
 
 .readButton:hover, .editButton:hover, .deleteButton:hover {
   background: white;
   color: #007BFF;
+}
+
+.readButton:hover svg, .editButton:hover svg, .deleteButton:hover svg {
+  color: #007BFF; /* Change color of icon on hover */
 }

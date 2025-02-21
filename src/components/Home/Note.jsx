@@ -3,6 +3,7 @@ import { db, auth } from "../../firebase/firebase";
 import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import styles from "../../css/Home/Note.module.css";
 import propTypes from "prop-types";
+import { FiBookOpen, FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const Note = ({ note, setNotes }) => {
   const [isReadModalOpen, setIsReadModalOpen] = useState(false);
@@ -89,16 +90,16 @@ const Note = ({ note, setNotes }) => {
             setIsReadModalOpen(true);
           }}
         >
-          Read
+          <FiBookOpen />
         </button>
         <button
           className={styles.editButton}
           onClick={() => setIsEditMode(true)}
         >
-          Edit
+          <FiEdit2 />
         </button>
         <button className={styles.deleteButton} onClick={handleDelete}>
-          Delete
+          <FiTrash2 />
         </button>
       </div>
 
