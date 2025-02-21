@@ -4,6 +4,8 @@ import { doc, deleteDoc, updateDoc } from "firebase/firestore";
 import styles from "../../css/Home/Note.module.css";
 import propTypes from "prop-types";
 import { FiBookOpen, FiEdit2, FiTrash2 } from "react-icons/fi";
+import ReadNote from "../Home/ReadNote";
+import EditNote from "../Home/EditNote";
 
 const Note = ({ note, setNotes }) => {
   const [isReadModalOpen, setIsReadModalOpen] = useState(false);
@@ -104,31 +106,18 @@ const Note = ({ note, setNotes }) => {
       </div>
 
       {isReadModalOpen && (
-        <div className={styles.modal}>
-          <div className={styles.modalContent}>
-            <h3>{note.title}</h3>
-            <p>{note.content}</p>
-            <button onClick={() => setIsReadModalOpen(false)}>Close</button>
-          </div>
-        </div>
+        <ReadNote note={note} onClose={() => setIsReadModalOpen(false)} />
       )}
 
       {isEditMode && (
-        <div className={styles.editForm}>
-          <input
-            type="text"
-            value={updatedTitle}
-            onChange={(e) => setUpdatedTitle(e.target.value)}
-            placeholder="Edit title"
-          />
-          <textarea
-            value={updatedContent}
-            onChange={(e) => setUpdatedContent(e.target.value)}
-            placeholder="Edit content"
-          />
-          <button onClick={handleEdit}>Save</button>
-          <button onClick={() => setIsEditMode(false)}>Cancel</button>
-        </div>
+        <EditNote
+          updatedTitle={updatedTitle}
+          setUpdatedTitle={setUpdatedTitle}
+          updatedContent={updatedContent}
+          setUpdatedContent={setUpdatedContent}
+          handleEdit={handleEdit}
+          onCancel={() => setIsEditMode(false)}
+        />
       )}
     </div>
   );
