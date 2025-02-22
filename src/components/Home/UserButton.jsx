@@ -1,11 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect, useContext } from "react";
 import UserInfo from "./UserInfo";
 import styles from "../../css/Home/UserButton.module.css";
 import inputTypes from "prop-types";
 import { FiUser } from "react-icons/fi";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
+import NotesContext from "../../context/NotesContext";
 
-const Header = ({ user, notesCount }) => {
+const Header = () => {
   const [isUserInfoModalOpen, setIsUserInfoModalOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const { notes } = useContext(NotesContext);
+
+  useEffect(() => {
+    const auth = getAuth();
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className={styles.header}>
@@ -19,7 +32,7 @@ const Header = ({ user, notesCount }) => {
       {isUserInfoModalOpen && user && (
         <UserInfo
           user={user}
-          notesCount={notesCount}
+          notesCount={notes.length}
           closeModal={() => setIsUserInfoModalOpen(false)}
         />
       )}
@@ -28,8 +41,7 @@ const Header = ({ user, notesCount }) => {
 };
 
 Header.propTypes = {
-    user: inputTypes.object.isRequired,
-    notesCount: inputTypes.number.isRequired,
-    };
+  notesCount: inputTypes.number.isRequired,
+};
 
 export default Header;
