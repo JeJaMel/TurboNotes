@@ -1,0 +1,33 @@
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px; 
+}
+
+.logoText {
+  font-family: "Arial", sans-serif;
+  font-weight: bold;
+  font-size: 28px;
+  color: #007FFF; 
+  margin: 0;
+  padding: 0;
+  transition: color 0.3s ease-in-out;
+}
+
+.logoText:hover {
+  color: #005bb5;
+}
+
+@media (max-width: 600px) {
+  .logoContainer {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .logoText {
+    font-size: 24px;
+  }
+}
+
