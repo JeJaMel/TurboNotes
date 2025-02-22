@@ -1,5 +1,6 @@
+import { FiSearch } from "react-icons/fi";
 import styles from "../../css/Home/SearchBar.module.css";
-import { useNotes } from "../../context/UseNotes"; 
+import { useNotes } from "../../context/UseNotes";
 
 const SearchBar = () => {
   const { query, setQuery } = useNotes();
@@ -10,6 +11,9 @@ const SearchBar = () => {
 
   return (
     <div className={styles.searchBarContainer}>
+      <div className={styles.iconContainer}>
+        <FiSearch className={styles.searchIcon} />
+      </div>
       <input
         type="text"
         value={query}
