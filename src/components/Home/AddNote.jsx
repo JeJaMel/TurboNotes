@@ -10,6 +10,7 @@ const AddNote = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
+  const [showEditButton, setShowEditButton] = useState(false);
 
   const handleAddNote = async (e) => {
     e.preventDefault();
@@ -31,12 +32,14 @@ const AddNote = () => {
       await addDoc(notesRef, {
         title,
         content,
+        showEditButton,
         createdAt: new Date().toISOString(),
       });
 
       setIsOpen(false);
       setTitle("");
       setContent("");
+      setShowEditButton(false);
     } catch (error) {
       console.error("Error adding note:", error);
     } finally {
@@ -54,7 +57,7 @@ const AddNote = () => {
         <div className={styles.addNoteFormContainer}>
           <div className={styles.titleContainer}>
             <h2>Add a new note!</h2>
-            </div>
+          </div>
           <div className={styles.addNoteForm}>
             <input
               type="text"
@@ -67,6 +70,14 @@ const AddNote = () => {
               value={content}
               onChange={(e) => setContent(e.target.value)}
             />
+            <label className={styles.checkboxLabel}>
+              <input
+                type="checkbox"
+                checked={showEditButton}
+                onChange={(e) => setShowEditButton(e.target.checked)}
+              />
+              Show Edit Button
+            </label>
             <button
               onClick={handleAddNote}
               className={styles.saveButton}

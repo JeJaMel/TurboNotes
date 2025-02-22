@@ -7,10 +7,10 @@ import { FiBookOpen, FiEdit2, FiTrash2 } from "react-icons/fi";
 
 const Note = ({ note }) => {
   const { openModal, setNotes } = useNotes();
+  const { title, content, showEditButton = true } = note;
 
   const handleDelete = async () => {
     if (!note.id) return;
-
     const confirmDelete = window.confirm(
       "Are you sure you want to delete this note?"
     );
@@ -31,8 +31,8 @@ const Note = ({ note }) => {
 
   return (
     <div className={styles.noteContainer}>
-      <h3 className={styles.noteTitle}>{note.title}</h3>
-      <p className={styles.noteContent}>{note.content}</p>
+      <h3 className={styles.noteTitle}>{title}</h3>
+      <p className={styles.noteContent}>{content}</p>
       <div className={styles.noteOptions}>
         <button
           className={styles.readButton}
@@ -40,12 +40,14 @@ const Note = ({ note }) => {
         >
           <FiBookOpen />
         </button>
-        <button
-          className={styles.editButton}
-          onClick={() => openModal(note, "edit")}
-        >
-          <FiEdit2 />
-        </button>
+        {showEditButton && (
+          <button
+            className={styles.editButton}
+            onClick={() => openModal(note, "edit")}
+          >
+            <FiEdit2 />
+          </button>
+        )}
         <button className={styles.deleteButton} onClick={handleDelete}>
           <FiTrash2 />
         </button>
@@ -56,6 +58,7 @@ const Note = ({ note }) => {
 
 Note.propTypes = {
   note: propTypes.object.isRequired,
+  showEditButton: propTypes.bool,
 };
 
 export default Note;

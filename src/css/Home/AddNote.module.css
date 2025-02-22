@@ -1,12 +1,13 @@
 .addNoteContainer {
   display: flex;
   flex-direction: column;
-  align-items: flex-end; 
+  align-items: flex-end;
   margin: 20px;
 }
 
+/* Floating Add Button */
 .addButton {
-  background-color: #007bff;
+  background-color: var(--primary-color, #007bff);
   border: none;
   border-radius: 50%;
   color: white;
@@ -14,17 +15,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 80px; 
+  height: 80px;
   width: 80px;
-  position: fixed; 
-  bottom: 160px; 
-  right: 20px; 
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  position: fixed;
+  bottom: 140px;
+  right: 20px;
+  transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
 }
 
 .addButton:hover {
-  background-color: #0056b3;
-  transform: translateY(-5px);  
+  background-color: var(--primary-hover, #0056b3);
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 15px rgba(0, 0, 0, 0.3);
 }
 
 .addButton:focus {
@@ -34,85 +37,94 @@
 
 .addButton img {
   height: 48px;
-  width: 48px; 
-  filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+  width: 48px;
+  filter: invert(100%) brightness(105%);
 }
 
+/* Note Form Container */
 .addNoteFormContainer {
-  position: fixed; 
+  position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5); 
-  padding: 20px;
-  border-radius: 10px;
-  width: 90%; /* Adjusted width for responsiveness */
+  background-color: rgba(20, 20, 20, 0.9);
+  padding: 25px;
+  border-radius: 12px;
+  width: 90%;
   max-width: 500px;
   z-index: 1000;
-  border-color: #ccc;
-  border-style: solid;
-  transition: background-color 0.2s ease;
+  border: 1px solid var(--border-color, #ccc);
+  transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
 .addNoteFormContainer:hover {
-  background-color: rgba(0, 0, 0, 0.6); 
+  background-color: rgba(30, 30, 30, 0.95);
 }
 
+/* Title Styling */
 .titleContainer {
   text-align: center;
-  margin-bottom: 10px; 
+  margin-bottom: 15px;
 }
 
 .titleContainer h2 {
-  font-size: 24px;
+  font-size: 22px;
   color: white;
-  margin: 0; 
+  margin: 0;
+  font-weight: 600;
 }
 
+/* Form Inputs */
 .addNoteForm {
   display: flex;
   flex-direction: column;
-  align-items: center; 
+  align-items: center;
   width: 100%;
 }
 
 .addNoteForm input,
 .addNoteForm textarea {
   width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  font-size: 16px; 
-  transition: background-color 0.3s ease;
+  padding: 12px;
+  margin: 8px 0;
+  border: 1px solid var(--border-color, #ccc);
+  border-radius: 8px;
+  font-size: 16px;
+  background-color: var(--input-bg, #1c1c1c);
+  color: white;
+  transition: border-color 0.3s ease, background-color 0.3s ease;
 }
 
 .addNoteForm input:hover,
 .addNoteForm textarea:hover {
-  background-color: rgba(44, 37, 37, 0.5); 
+  background-color: rgba(50, 50, 50, 0.8);
 }
 
 .addNoteForm input {
-  height: 40px; 
+  height: 45px;
 }
 
 .addNoteForm textarea {
-  height: 240px; 
+  height: 200px;
+  resize: none;
 }
 
+/* Buttons */
 .addNoteForm button {
-  background-color: #28a745;
+  background-color: var(--success-color, #28a745);
   border: none;
-  border-radius: 5px;
+  border-radius: 6px;
   color: white;
   cursor: pointer;
-  padding: 10px 20px;
-  transition: background-color 0.3s ease;
+  padding: 12px 20px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
   font-size: 16px;
+  font-weight: 500;
 }
 
 .addNoteForm button:hover {
-  background-color: #218838;
+  background-color: var(--success-hover, #218838);
+  transform: translateY(-2px);
 }
 
 .addNoteForm button:disabled {
@@ -121,35 +133,57 @@
 }
 
 .addNoteForm button svg {
-  height: 24px; 
-  width: 24px; 
+  height: 24px;
+  width: 24px;
 }
 
-/* Media Queries for Responsiveness */
+/* Checkbox Styling */
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 15px;
+  color: white;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.checkboxLabel input {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--primary-color, #007bff);
+  cursor: pointer;
+}
+
+/* Responsive Styles */
 @media (min-width: 768px) {
   .addButton {
     height: 100px;
     width: 100px;
-    bottom: 160px; 
+    bottom: 140px;
     right: 50px;
   }
 
   .addButton img {
-    height: 60px; /* Adjusted height for larger screens */
-    width: 60px; /* Adjusted width for larger screens */
+    height: 52px;
+    width: 52px;
   }
 
   .titleContainer h2 {
-    font-size: 32px; /* Adjusted font size for larger screens */
+    font-size: 26px;
   }
 
   .addNoteForm input,
   .addNoteForm textarea {
-    font-size: 18px; /* Adjusted font size for larger screens */
+    font-size: 18px;
+  }
+
+  .addNoteForm button {
+    font-size: 18px;
   }
 
   .addNoteForm button svg {
-    height: 32px; /* Adjusted height for larger screens */
-    width: 32px; /* Adjusted width for larger screens */
+    height: 28px;
+    width: 28px;
   }
 }
