@@ -38,17 +38,26 @@ const EditNote = ({ note }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
+        <h3 className={styles.modalTitle}>Edit Note</h3>
         <input
           type="text"
+          className={styles.inputTitle}
           value={updatedTitle}
           onChange={(e) => setUpdatedTitle(e.target.value)}
         />
         <textarea
+          className={styles.textareaContent}
           value={updatedContent}
           onChange={(e) => setUpdatedContent(e.target.value)}
         />
-        <button onClick={handleEdit}>Save</button>
-        <button onClick={closeModal}>Cancel</button>
+        <div className={styles.buttons}>
+          <button className={styles.button} onClick={handleEdit}>
+            Save
+          </button>
+          <button className={styles.button} onClick={closeModal}>
+            Cancel
+          </button>
+        </div>
       </div>
     </div>
   );

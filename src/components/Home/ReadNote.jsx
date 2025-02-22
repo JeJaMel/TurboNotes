@@ -5,9 +5,11 @@ const ReadNote = ({ note, onClose }) => {
   return (
     <div className={styles.modal}>
       <div className={styles.modalContent}>
-        <h3>{note.title}</h3>
-        <p>{note.content}</p>
-        <button onClick={onClose}>Close</button>
+        <h3 className={styles.modalTitle}>{note.title}</h3>
+        <p className={styles.modalContentText}>{note.content}</p>
+        <button className={styles.modalButton} onClick={onClose}>
+          Close
+        </button>
       </div>
     </div>
   );
