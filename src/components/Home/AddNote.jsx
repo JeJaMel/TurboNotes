@@ -34,7 +34,6 @@ const AddNote = () => {
         createdAt: new Date().toISOString(),
       });
 
-      alert("Note added successfully!");
       setIsOpen(false);
       setTitle("");
       setContent("");

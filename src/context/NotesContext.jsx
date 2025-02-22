@@ -16,7 +16,6 @@ export const NotesProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
 
-  // New state for managing modals
   const [selectedNote, setSelectedNote] = useState(null);
   const [modalType, setModalType] = useState(""); // "read" or "edit"
 

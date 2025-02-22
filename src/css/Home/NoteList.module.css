@@ -6,7 +6,6 @@
   width: 85vw; 
   margin: left; 
   padding: 30px;
-  border-radius: 10px;
 }
 
 /*.noteContainer {
@@ -14,6 +13,34 @@
   box-sizing: border-box;
   margin: 10px; 
 }*/
+
+
+.notFoundContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgb(0, 128, 255, 0.5);
+  background-color: rgba(255, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.errorMatchMessage {
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.errorMatchMessage svg {
+  height: 32px;
+  width: 32px;
+  margin-right: 10px;
+  margin-left: 7px;
+}
 
 @media (max-width: 1200px) {
   .noteListContainer {

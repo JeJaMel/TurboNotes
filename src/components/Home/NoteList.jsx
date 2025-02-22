@@ -3,7 +3,8 @@ import Note from "./Note";
 import ReadNote from "./ReadNote";
 import EditNote from "./EditNote";
 import Wait from "../Home/Wait";
-import styles from "../../css/Home/NoteList.module.css"; // Importación correcta
+import styles from "../../css/Home/NoteList.module.css";
+import { FiFrown } from "react-icons/fi";
 
 const NoteList = () => {
   const {
@@ -23,14 +24,19 @@ const NoteList = () => {
   return (
     <div className={styles.noteListContainer}>
       {loading ? (
-              <Wait />
-            ) : filteredNotes.length > 0 ? (
-              filteredNotes.map((note) => (
-                <Note key={note.id} note={note} setNotes={setNotes} />
-              ))
-            ) : (
-              <p>No matching notes found</p>
-            )}
+        <Wait />
+      ) : filteredNotes.length > 0 ? (
+        filteredNotes.map((note) => (
+          <Note key={note.id} note={note} setNotes={setNotes} />
+        ))
+      ) : (
+        <div className={styles.notFoundContainer}>
+          <p className={styles.errorMatchMessage}>
+            {" "}
+            No matching notes found <FiFrown />
+          </p>
+        </div>
+      )}
 
       {/* Global modal rendering */}
       {selectedNote && modalType === "read" && (
