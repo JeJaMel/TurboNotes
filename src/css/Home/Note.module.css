@@ -9,14 +9,11 @@
 }
 
 .noteContent {
-  font-size: 0.9rem;
-  text-align: center;
-  margin-bottom: 15px;
-  color: #f0f0f0;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  max-width: 300px; /* Adjust */
+  max-width: 100%; 
+  max-height: 100px;  
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+  white-space: nowrap;  
 }
 
 .noteContainer {
