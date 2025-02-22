@@ -3,7 +3,7 @@ import { db, collection, addDoc } from "../../firebase/firebase";
 import { auth } from "../../firebase/firebase";
 import styles from "../../css/Home/AddNote.module.css";
 import pencilPlusIcon from "../../assets/pencil-plus.svg";
-import { FiSave } from "react-icons/fi";
+import { FiSave, FiXCircle } from "react-icons/fi";
 
 const AddNote = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -47,6 +47,10 @@ const AddNote = () => {
     }
   };
 
+  const handleGoBack = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className={styles.addNoteContainer}>
       <button onClick={() => setIsOpen(!isOpen)} className={styles.addButton}>
@@ -55,6 +59,10 @@ const AddNote = () => {
 
       {isOpen && (
         <div className={styles.addNoteFormContainer}>
+          <div className={styles.goBackSVG} onClick={handleGoBack}>
+            <FiXCircle />
+          </div>
+
           <div className={styles.titleContainer}>
             <h2>Add a new note!</h2>
           </div>
