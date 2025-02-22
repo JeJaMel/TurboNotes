@@ -1,5 +1,5 @@
 import styles from "../../css/Home/SearchBar.module.css";
-import { useNotes } from "../../context/useNotes"; 
+import { useNotes } from "../../context/UseNotes"; 
 
 const SearchBar = () => {
   const { query, setQuery } = useNotes();

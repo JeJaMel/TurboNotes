@@ -16,6 +16,10 @@ export const NotesProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const [query, setQuery] = useState("");
 
+  // New state for managing modals
+  const [selectedNote, setSelectedNote] = useState(null);
+  const [modalType, setModalType] = useState(""); // "read" or "edit"
+
   useEffect(() => {
     let unsubscribeSnapshot;
 
@@ -42,9 +46,29 @@ export const NotesProvider = ({ children }) => {
     };
   }, []);
 
+  const openModal = (note, type) => {
+    setSelectedNote(note);
+    setModalType(type);
+  };
+
+  const closeModal = () => {
+    setSelectedNote(null);
+    setModalType("");
+  };
+
   return (
     <NotesContext.Provider
-      value={{ notes, setNotes, loading, query, setQuery }}
+      value={{
+        notes,
+        setNotes,
+        loading,
+        query,
+        setQuery,
+        selectedNote,
+        modalType,
+        openModal,
+        closeModal,
+      }}
     >
       {children}
     </NotesContext.Provider>
