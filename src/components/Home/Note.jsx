@@ -11,11 +11,6 @@ const Note = ({ note }) => {
 
   const handleDelete = async () => {
     if (!note.id) return;
-    const confirmDelete = window.confirm(
-      "Are you sure you want to delete this note?"
-    );
-    if (!confirmDelete) return;
-
     try {
       const userId = auth.currentUser?.uid;
       if (!userId) return;

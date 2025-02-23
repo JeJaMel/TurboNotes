@@ -2,18 +2,14 @@
   font-size: 1.2rem;
   font-weight: bold;
   text-align: center;
-  margin-bottom: 5px; 
+  margin-bottom: 5px;
   text-transform: uppercase;
-  border-bottom: 2px solid #00aaff; 
-  padding-bottom: 2px; 
-}
-
-.noteContent {
-  max-width: 100%; 
-  max-height: 100px;  
-  overflow: hidden; 
+  border-bottom: 2px solid #00aaff;
+  padding-bottom: 2px;
+  max-width: 100%;  
+  overflow: hidden;
   text-overflow: ellipsis; 
-  white-space: nowrap;  
+  white-space: nowrap;
 }
 
 .noteContainer {
@@ -36,6 +32,14 @@
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.9);
 }
 
+.noteContent {
+  max-width: 100%;
+  max-height: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .noteOptions {
   display: flex;
   justify-content: center;
@@ -47,7 +51,7 @@
   background: #007BFF;
   color: white;
   border: 1px solid #007BFF;
-  padding: 8px 12px; 
+  padding: 8px 12px;
   border-radius: 5px;
   cursor: pointer;
   text-transform: uppercase;
@@ -55,12 +59,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 40px; 
+  height: 40px;
   width: auto;
 }
 
 .readButton svg, .editButton svg, .deleteButton svg {
-  font-size: 1.8rem; 
+  font-size: 1.8rem;
   color: white;
 }
 
@@ -70,5 +74,5 @@
 }
 
 .readButton:hover svg, .editButton:hover svg, .deleteButton:hover svg {
-  color: #007BFF; 
+  color: #007BFF;
 }
